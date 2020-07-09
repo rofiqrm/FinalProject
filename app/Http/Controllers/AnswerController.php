@@ -14,7 +14,8 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        
+        $answer = Answer::all();
+        return view('answer.index', compact('answer')); 
     }
 
     /**
@@ -24,7 +25,7 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+        return view('answer.form');
     }
 
     /**
@@ -35,7 +36,11 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_answer = Answer::create([
+            'answer' => $request['answer']
+        ]);
+
+        return redirect('/answer');
     }
 
     /**
