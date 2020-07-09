@@ -11,6 +11,11 @@
 |
 */
 
+use App\Http\Controllers\QuestionController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('question', 'QuestionController');
+Route::resource('answer', 'AnswerController');
