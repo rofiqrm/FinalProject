@@ -5,7 +5,7 @@
     <form action="/question" method="POST">
      @csrf
       <div class="form-group">
-        <label for="title">Titile :</label>
+        <label for="title">Title :</label>
         <input type="text" class="form-control" placeholder="Masukkan title" name="title" id="title">
       </div>
       <div class="form-group">
