@@ -22,7 +22,7 @@
                 @foreach($question as $key => $item)
               <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $item->judul }}</td>
+                <td>{{ $item->title }}</td>
                 <td>{{ $item->namalengkap }}</td>
                 <td>
                     <a href="/question/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>

@@ -35,8 +35,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Store a newly created resource in storage.s
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +44,11 @@ class QuestionController extends Controller
         $new_question = Question::create([
             'title' => $request['title'],
             'question' => $request['question']
-        ]);
+
+            ]);
+            
+            $request['question'] = str_replace("<p>","",$request['question']);
+            $request['question'] = str_replace("</p>","",$request['question']);
 
         return redirect('/question');
     }
@@ -70,7 +73,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find_by_id($id);
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -82,7 +86,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::where('id', $id)
+                                ->update([
+                                    'title' => $request["title"],
+                                    'question' => $request["question"],
+                                ]);
+        return redirect('/question');
     }
 
     /**
