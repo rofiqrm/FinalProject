@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateQuestionsTable extends Migration
@@ -22,8 +23,6 @@ class CreateQuestionsTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
-            
-           
         });
     }
 
