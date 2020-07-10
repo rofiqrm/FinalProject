@@ -12,10 +12,15 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $answer = Answer::all();
-        return view('answer.index', compact('answer')); 
+        return view('answer.index', compact('answer'));
     }
 
     /**

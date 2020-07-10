@@ -1,34 +1,46 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="mb-3">
-  <a class="btn btn-primary" href="/question/create" role="button">Create New Question</a>
+<div class="card">
+    <div class="card-header">
+	    <h3 class="card-title">Daftar Pertanyaan</h3>
+	    <a href="/question/create" class="btn btn-info float-right" role="button"><i class="fa fa-plus"></i> Tambah Pertanyaan</a>
+	</div>
+    <div>
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Judul</th>
+                <th>Penanya</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($question as $key => $item)
+              <tr>
+                <td>{{ $key+1 }}</td>
+                <td>{{ $item->judul }}</td>
+                <td>{{ $item->namalengkap }}</td>
+                <td>
+                    <a href="/question/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
+                </td>
+                <td>
+                    <a href="/question/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+                <td>
+                    <form action="/question/{{$item->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </form>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+    </div>
 </div>
-<table class="table">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Title</th>
-        <th>Question List</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach($question as $key => $question)
-      <tr>
-        <td> {{ $key + 1 }} </td>
-        <td> {{ $question->title }} </td>
-        <td> {{ $question->question }} </td>
-        <td>
-        <a href="/question/{{$question->id}}" class="btn btn-sm btn-info">Detail <i class="fa fa-list" aria-hidden="true"></i> </a>
-        <form action="/question/{{$question->id}}" method="POST" style="display: inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-sm btn-danger">Delete <i class="fas fa-trash"></i> </button>
-        </td>
-      </tr>
-     @endforeach
-    </tbody>
-  </table>
-  
 @endsection

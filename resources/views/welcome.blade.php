@@ -4,97 +4,108 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>LaraHUB</title>
+        <link rel="icon" href="{{ asset('img/favicon.png')}}" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/bootstrap.min.css')}}" />
+        <!-- animate CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/animate.css')}}" />
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/owl.carousel.min.css')}}" />
+        <!-- themify CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/themify-icons.css')}}" />
+        <!-- flaticon CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/flaticon.css')}}" />
+        <!-- font awesome CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/magnific-popup.css')}}" />
+        <!-- swiper CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/slick.css')}}" />
+        <!-- style CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/style.css')}}" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        <header class="main_menu home_menu">
+            <div class="container">
+              <div class="row align-items-right">
+                <div class="col-lg-12">
+                  <nav class="navbar navbar-expand-lg navbar-light float-right">
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                    >
+                      <span class="ti-menu"></span>
+                    </button>
 
+                    <div
+                      class="collapse navbar-collapse main-menu-item justify-content-center"
+                      id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav align-items-center">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
                         @endif
-                    @endauth
+                        @endauth
+                        </ul>
+                    </div>
+                  </nav>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+              </div>
             </div>
-        </div>
+          </header>
+        <section class="banner_part">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 offset-lg-1">
+                  <div class="banner_text">
+                    <div class="banner_text_iner">
+                      <h5>Tanya Jawab Segala Hal tentang Pemrograman.</h5>
+                      <h1>Digital and innovative idea</h1>
+                      <a href="#" class="btn_1">Explore Questions</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        <footer class="sticky-footer" style="background-color: #00d089">
+            <div class="container py-4">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Final Project SanberCode Kelompok 71</span>
+              </div>
+            </div>
+        </footer>
+          <!-- footer part end-->
+
+          <!-- jquery plugins here-->
+          <script src="{{ asset('theme/js/jquery-1.12.1.min.js')}}"></script>
+          <!-- popper js -->
+          <script src="{{ asset('theme/js/popper.min.js')}}"></script>
+          <!-- bootstrap js -->
+          <script src="{{ asset('theme/js/bootstrap.min.js')}}"></script>
+          <!-- easing js -->
+          <script src="{{ asset('theme/js/jquery.magnific-popup.js')}}"></script>
+          <!-- isotope js -->
+          <script src="{{ asset('theme/js/isotope.pkgd.min.js')}}"></script>
+          <!-- particles js -->
+          <script src="{{ asset('theme/js/owl.carousel.min.js')}}"></script>
+          <script src="{{ asset('theme/js/jquery.nice-select.min.js')}}"></script>
+          <!-- custom js -->
+          <script src="{{ asset('theme/js/custom.js')}}"></script>
     </body>
 </html>
