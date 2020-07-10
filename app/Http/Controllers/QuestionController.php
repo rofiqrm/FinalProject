@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Question;
 
 class QuestionController extends Controller
@@ -21,6 +22,7 @@ class QuestionController extends Controller
     public function index()
     {
         $question = Question::all();
+        // $user = User::all();
         return view('question.index', compact('question'));
     }
 
@@ -31,7 +33,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.form');
+        $user = User::all();
+        return view('question.form', compact('user'));
     }
 
     /**
@@ -43,12 +46,12 @@ class QuestionController extends Controller
     {
         $new_question = Question::create([
             'title' => $request['title'],
-            'question' => $request['question']
-
+            'question' => $request['question'],
+            'user_id' => $request['user_id'],
             ]);
             
-            $request['question'] = str_replace("<p>","",$request['question']);
-            $request['question'] = str_replace("</p>","",$request['question']);
+            // $request['question'] = str_replace("<p>","",$request['question']);
+            // $request['question'] = str_replace("</p>","",$request['question']);
 
         return redirect('/question');
     }
@@ -90,6 +93,7 @@ class QuestionController extends Controller
                                 ->update([
                                     'title' => $request["title"],
                                     'question' => $request["question"],
+                                    'user_id' => $request["user_id"],
                                 ]);
         return redirect('/question');
     }

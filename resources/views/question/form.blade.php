@@ -8,6 +8,11 @@
 <div class="ml-3">
     <form action="/question" method="POST">
      @csrf
+     <div class="text-left" name="user_id" id="user_id">
+      @foreach($user as $client)
+        <h3 for="user_id">Halo : {{ $client->name }} </h3>
+      @endforeach 
+     </div>
       <div class="form-group">
         <label for="title">Title :</label>
         <input type="text" class="form-control" placeholder="Masukkan title" name="title" id="title">
