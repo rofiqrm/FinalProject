@@ -11,7 +11,7 @@
      <div class="text-left" name="user_id" id="user_id">
       @foreach($user as $client)
         <h3 for="user_id">Halo : {{ $client->name }} </h3>
-      @endforeach 
+      @endforeach
      </div>
       <div class="form-group">
         <label for="title">Title :</label>
@@ -20,6 +20,11 @@
       <div class="form-group">
         <label for="question">Question :</label>
         <textarea name="question" id="question" placeholder="Masukkan question" class="form-control my-editor"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tag :</label>
+        <input type="tags" id="tag" name="tag" class="form-control" placeholder="Enter Tags ...">
+        <label>Pisahkan dengan koma(,)</label>
       </div>
       <button type="submit" class="btn btn-primary">Posting Question</button>
     </form>

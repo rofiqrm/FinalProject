@@ -11,11 +11,9 @@
             <thead>
               <tr>
                 <th style="width: 10px">#</th>
-                <th>Judul</th>
-                <th>Penanya</th>
-                <th>Detail</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th style="text-align: center; width: 500px">Judul</th>
+                <th style="width: 300px">Penanya</th>
+                <th colspan="3" style="text-align: center;">Aksi</th>
               </tr>
             </thead>
             <tbody>

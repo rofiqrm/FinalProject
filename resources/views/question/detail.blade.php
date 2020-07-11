@@ -4,7 +4,7 @@
 <div class="card mb-2">
   <div class="card-body">
     <h5 class="card-title">Title : {{ $question->title }} </h5>
-    <p class="card-text">Question : {{ $question->question }}</p>
+    <p class="card-text">Question : {!! $question->question !!}</p>
     <p class="card-text">Created at : {{ $question->created_at }}</p>
     <p class="card-text">Update at : {{ $question->updated_at }}</p>
     <a href="/answer/create" class="btn btn-sm btn-info">Answer here</a>
