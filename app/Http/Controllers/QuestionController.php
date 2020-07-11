@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Http\Request;
+use App\User;
 use App\Question;
 
 class QuestionController extends Controller
@@ -12,9 +14,16 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $question = Question::all();
+        // $user = User::all();
         return view('question.index', compact('question'));
     }
 
@@ -25,21 +34,25 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.form');
+        $user = User::all();
+        return view('question.form', compact('user'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Store a newly created resource in storage.s
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $new_question = Question::create([
+        $question = Question::create([
             'title' => $request['title'],
-            'question' => $request['question']
+            'question' => $request['question'],
+            'user_id' => $request['user_id'],
         ]);
+
+        // $request['question'] = str_replace("<p>","",$request['question']);
+        // $request['question'] = str_replace("</p>","",$request['question']);
 
         return redirect('/question');
     }
@@ -53,7 +66,10 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find_by_id($id);
-        return view('question.detail', compact('question'));
+        //$answer = Answer::find($user_id);
+        $answer = Answer::all();
+        //dd($answer);
+        return view('question.detail', compact('question', 'answer'));
     }
 
     /**
@@ -64,7 +80,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find_by_id($id);
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -76,7 +93,13 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::where('id', $id)
+            ->update([
+                'title' => $request["title"],
+                'question' => $request["question"],
+                'user_id' => $request["user_id"],
+            ]);
+        return redirect('/question');
     }
 
     /**

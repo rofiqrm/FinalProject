@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question; // baru
 use App\Answer;
 
 class AnswerController extends Controller
@@ -12,10 +13,16 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $answer = Answer::all();
-        return view('answer.index', compact('answer')); 
+        $question = Question::all();
+        return view('question.detail', compact('answer', 'question'));
     }
 
     /**
@@ -40,7 +47,7 @@ class AnswerController extends Controller
             'answer' => $request['answer']
         ]);
 
-        return redirect('/answer');
+        return redirect('/question');
     }
 
     /**
@@ -51,7 +58,6 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
