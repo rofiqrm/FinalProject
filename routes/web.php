@@ -20,7 +20,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    // \UniSharp\LaravelFilemanager\Lfm::routes();
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
 Route::get('/', function () {
