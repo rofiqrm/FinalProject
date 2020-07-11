@@ -7,15 +7,18 @@
         <p class="card-text">Question : {!! $question->question !!}</p>
         <p class="card-text">Created at : {{ $question->created_at }}</p>
         <p class="card-text">Update at : {{ $question->updated_at }}</p>
-        <p class="card-text">Tags:
+        <p class="card-text">Tags: </br>
             @foreach ($tag as $item)
                 <button type="button" class="btn btn-success active">{{$item}}</button>
             @endforeach
+            <a href="#" class="btn btn-sm btn-info mx-2" style="float : right">Comment</a>
         </p>
     </div>
     <div class="card-footer">
         <a href="/answer/{{$question->id}}/create" class="btn btn-sm btn-info">Answer here</a>
         <a href="/question" class="btn btn-sm btn-danger">back</a>
+        <a href="#" class="btn btn-sm btn-light btn-outline-danger mx-2" style="float : right">Downvote</a>
+        <a href="#" class="btn btn-sm btn-info mx-2" style="float : right">Upvote</a>
     </div>
 </div>
 
@@ -36,7 +39,7 @@
             @foreach($answer as $key => $item)
         <tr>
             <td>{{ $key+1 }}</td>
-            <td>{!! $item->answer !!}</td>
+            <td>{!! $item->answer !!}  <a href="#" class="btn btn-sm btn-info" style="float : right">Comment</a></td>
             <td>{{ $item->name }}</td>
         </tr>
             @endforeach
