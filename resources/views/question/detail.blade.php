@@ -15,7 +15,6 @@
     </div>
     <div class="card-footer">
         <a href="/answer/{{$question->id}}/create" class="btn btn-sm btn-info">Answer here</a>
-        {{-- <a href="/question/{{$question->id}}/edit" class="btn btn-sm btn-dark">Edit <i class="fa fa-edit" aria-hidden="true"></i> </a> --}}
         <a href="/question" class="btn btn-sm btn-danger">back</a>
     </div>
 </div>
