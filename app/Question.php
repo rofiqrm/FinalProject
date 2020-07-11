@@ -17,4 +17,13 @@ class Question extends Model
         $question = DB::table('questions')->where('id', $id)->first();
         return $question;
     }
+
+    public static function get_all() {
+        $items = DB::table('questions')
+		            ->leftJoin('users', 'questions.user_id', '=', 'users.id')
+		            ->select('questions.id as id', 'title', 'name', 'users.id as user_id')
+		            ->orderBy('id', 'desc')
+		            ->get();
+		return $items;
+    }
 }

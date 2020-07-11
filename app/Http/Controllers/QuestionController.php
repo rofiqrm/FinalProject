@@ -6,6 +6,7 @@ use App\Answer;
 use Illuminate\Http\Request;
 use App\User;
 use App\Question;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -22,8 +23,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $question = Question::all();
-        // $user = User::all();
+        $question = Question::get_all();
         return view('question.index', compact('question'));
     }
 
@@ -35,7 +35,8 @@ class QuestionController extends Controller
     public function create()
     {
         $user = User::all();
-        return view('question.form', compact('user'));
+        $userLogin = Auth::user();
+        return view('question.form', compact('user', 'userLogin'));
     }
 
     /**
@@ -49,6 +50,7 @@ class QuestionController extends Controller
             'title' => $request['title'],
             'question' => $request['question'],
             'user_id' => $request['user_id'],
+            'tags' => $request['tag'],
         ]);
 
         // $request['question'] = str_replace("<p>","",$request['question']);
@@ -66,10 +68,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find_by_id($id);
-        //$answer = Answer::find($user_id);
-        $answer = Answer::all();
-        //dd($answer);
-        return view('question.detail', compact('question', 'answer'));
+        $answer = Answer::get_all($id);
+        $tag = explode(",", $question->tags);
+        return view('question.detail', compact('question', 'answer', 'tag'));
     }
 
     /**

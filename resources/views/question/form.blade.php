@@ -9,11 +9,10 @@
     <form action="/question" method="POST">
      @csrf
      <div class="text-left" name="user_id" id="user_id">
-      @foreach($user as $client)
-        <h3 for="user_id">Halo : {{ $client->name }} </h3>
-      @endforeach
+        <h3 for="user_id">Halo : {{ $userLogin->name }} </h3>
      </div>
       <div class="form-group">
+        <input type="hidden" name="user_id" id="user_id" value="{{ $userLogin->id }}">
         <label for="title">Title :</label>
         <input type="text" class="form-control" placeholder="Masukkan title" name="title" id="title">
       </div>

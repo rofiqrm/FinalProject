@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/question', 'QuestionController');
-Route::resource('/answer', 'AnswerController');
+Route::resource('/answer/{id}', 'AnswerController');
 
 Auth::routes();
 
