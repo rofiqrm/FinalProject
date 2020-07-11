@@ -26,7 +26,13 @@
                     <a href="/question/{{$item->id}}" class="btn btn-info btn-sm">Detail</a>
                 </td>
                 <td>
-                    <a href="/question/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/question/{{$item->id}}/edit" class="btn btn-warning btn-sm"
+                        @if ($item->user_id != $userLogin->id)
+                            onClick="
+                            alert('Anda tidak bisa mengedit pertanyaan user lain!');
+                            return false;"
+                        @endif
+                        >Edit</a>
                 </td>
                 <td>
                     <form action="/question/{{$item->id}}" method="POST">

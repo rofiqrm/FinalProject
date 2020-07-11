@@ -24,7 +24,8 @@ class QuestionController extends Controller
     public function index()
     {
         $question = Question::get_all();
-        return view('question.index', compact('question'));
+        $userLogin = Auth::user();
+        return view('question.index', compact('question', 'userLogin'));
     }
 
     /**
@@ -82,7 +83,9 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find_by_id($id);
-        return view('question.edit', compact('question'));
+        $userLogin = Auth::user();
+
+        return view('question.edit', compact('question', 'userLogin'));
     }
 
     /**
@@ -98,7 +101,7 @@ class QuestionController extends Controller
             ->update([
                 'title' => $request["title"],
                 'question' => $request["question"],
-                'user_id' => $request["user_id"],
+                'user_id' => $request['user_id'],
             ]);
         return redirect('/question');
     }
