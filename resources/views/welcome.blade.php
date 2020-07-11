@@ -76,7 +76,7 @@
                     <div class="banner_text_iner">
                       <h5>Tanya Jawab Segala Hal tentang Pemrograman.</h5>
                       <h1>Digital and innovative idea</h1>
-                      <a href="#" class="btn_1">Explore Questions</a>
+                      <a href="/question" class="btn_1">Explore Questions</a>
                     </div>
                   </div>
                 </div>

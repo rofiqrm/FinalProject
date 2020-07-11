@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 use App\Answer;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -20,7 +22,8 @@ class AnswerController extends Controller
     public function index()
     {
         $answer = Answer::all();
-        return view('answer.index', compact('answer'));
+        $question = Question::all();
+        return view('question.detail', compact('answer', 'question'));
     }
 
     /**
@@ -28,9 +31,11 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('answer.form');
+        $questionId = $id;
+        $userLogin = Auth::user();
+        return view('answer.form', compact('questionId', 'userLogin'));
     }
 
     /**
@@ -42,10 +47,12 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
         $new_answer = Answer::create([
-            'answer' => $request['answer']
+            'answer' => $request['answer'],
+            'user_id' => $request['user_id'],
+            'question_id' => $request['question_id']
         ]);
 
-        return redirect('/answer');
+        return redirect('/question');
     }
 
     /**
@@ -56,7 +63,6 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

@@ -15,6 +15,7 @@
         <input type="text" class="form-control" placeholder="Masukkan Isi" value="{{ $question->question }}" name="question" id="question">
       </div>
       <button type="submit" class="btn btn-primary">Edit</button>
+      <a href="/question" class="btn btn-danger">back</a>
     </form>
 </div>
 @endsection

@@ -9,17 +9,21 @@
     <form action="/question" method="POST">
      @csrf
      <div class="text-left" name="user_id" id="user_id">
-      @foreach($user as $client)
-        <h3 for="user_id">Halo : {{ $client->name }} </h3>
-      @endforeach 
+        <h3 for="user_id">Halo : {{ $userLogin->name }} </h3>
      </div>
       <div class="form-group">
+        <input type="hidden" name="user_id" id="user_id" value="{{ $userLogin->id }}">
         <label for="title">Title :</label>
         <input type="text" class="form-control" placeholder="Masukkan title" name="title" id="title">
       </div>
       <div class="form-group">
         <label for="question">Question :</label>
         <textarea name="question" id="question" placeholder="Masukkan question" class="form-control my-editor"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tag :</label>
+        <input type="tags" id="tag" name="tag" class="form-control" placeholder="Enter Tags ...">
+        <label>Pisahkan dengan koma(,)</label>
       </div>
       <button type="submit" class="btn btn-primary">Posting Question</button>
     </form>

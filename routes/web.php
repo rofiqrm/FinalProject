@@ -13,6 +13,11 @@
 
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    // \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -23,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/question', 'QuestionController');
-Route::resource('/answer', 'AnswerController');
+Route::resource('/answer/{id}', 'AnswerController');
 
 Auth::routes();
 

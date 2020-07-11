@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Http\Request;
 use App\User;
 use App\Question;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -21,8 +23,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $question = Question::all();
-        // $user = User::all();
+        $question = Question::get_all();
         return view('question.index', compact('question'));
     }
 
@@ -34,7 +35,8 @@ class QuestionController extends Controller
     public function create()
     {
         $user = User::all();
-        return view('question.form', compact('user'));
+        $userLogin = Auth::user();
+        return view('question.form', compact('user', 'userLogin'));
     }
 
     /**
@@ -44,14 +46,15 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $new_question = Question::create([
+        $question = Question::create([
             'title' => $request['title'],
             'question' => $request['question'],
             'user_id' => $request['user_id'],
-            ]);
-            
-            // $request['question'] = str_replace("<p>","",$request['question']);
-            // $request['question'] = str_replace("</p>","",$request['question']);
+            'tags' => $request['tag'],
+        ]);
+
+        // $request['question'] = str_replace("<p>","",$request['question']);
+        // $request['question'] = str_replace("</p>","",$request['question']);
 
         return redirect('/question');
     }
@@ -65,7 +68,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find_by_id($id);
-        return view('question.detail', compact('question'));
+        $answer = Answer::get_all($id);
+        $tag = explode(",", $question->tags);
+        return view('question.detail', compact('question', 'answer', 'tag'));
     }
 
     /**
@@ -90,11 +95,11 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $question = Question::where('id', $id)
-                                ->update([
-                                    'title' => $request["title"],
-                                    'question' => $request["question"],
-                                    'user_id' => $request["user_id"],
-                                ]);
+            ->update([
+                'title' => $request["title"],
+                'question' => $request["question"],
+                'user_id' => $request["user_id"],
+            ]);
         return redirect('/question');
     }
 

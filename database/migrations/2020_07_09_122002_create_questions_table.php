@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->string('question');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('tags')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
 
