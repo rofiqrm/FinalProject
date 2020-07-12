@@ -28,4 +28,7 @@ Route::get('/', function () {
 Route::resource('/question', 'QuestionController');
 Route::resource('/answer/{id}', 'AnswerController');
 
+// Route::get('/comment/{id}/create', 'CommentController@create');
+Route::resource('/comment/{question_id}', 'CommentController');
+
 Route::get('/home', 'HomeController@index')->name('home');
