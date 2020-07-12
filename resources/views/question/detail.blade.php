@@ -14,11 +14,11 @@
             <a href="#" class="btn btn-sm btn-info mx-2" style="float : right">Comment</a>
         </p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" data-question_id="{{ $question->id }}" data-user_id="{{ $userLogin->id }}">
         <a href="/answer/{{$question->id}}/create" class="btn btn-sm btn-info">Answer here</a>
         <a href="/question" class="btn btn-sm btn-danger">back</a>
-        <a href="#" class="btn btn-sm btn-light btn-outline-danger mx-2" style="float : right">Downvote</a>
-        <a href="#" class="btn btn-sm btn-info mx-2" style="float : right">Upvote</a>
+        <a href="#" class="btn btn-sm btn-light btn-outline-danger mx-2 vote" style="float : right">Downvote</a>
+        <a href="#" class="btn btn-sm btn-info mx-2 vote" style="float : right">Upvote</a>
     </div>
 </div>
 
@@ -36,9 +36,9 @@
         </tr>
         </thead>
         <tbody>
-            @foreach($answer as $key => $item)
+            @foreach($answer as $item)
         <tr>
-            <td>{{ $key+1 }}</td>
+            <td>{{ $item->id }}</td>
             <td>{!! $item->answer !!}  <a href="#" class="btn btn-sm btn-info" style="float : right">Comment</a></td>
             <td>{{ $item->name }}</td>
         </tr>
@@ -48,3 +48,8 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+    </script>
+@endpush

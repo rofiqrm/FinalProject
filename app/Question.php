@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Overtrue\LaravelLike\Traits\Likeable;
 
 class Question extends Model
 {
+    use Likeable;
     protected $guarded = [];
 
     public function answer() {

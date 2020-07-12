@@ -98,4 +98,12 @@ class AnswerController extends Controller
     {
         //
     }
+
+    public function voteAnswer(Request $request){
+
+        $post = Answer::find($request->answer_id);
+        $response = auth()->user()->toggleLike($post);
+
+        return response()->json(['success'=>$response]);
+    }
 }

@@ -71,7 +71,8 @@ class QuestionController extends Controller
         $question = Question::find_by_id($id);
         $answer = Answer::get_all($id);
         $tag = explode(",", $question->tags);
-        return view('question.detail', compact('question', 'answer', 'tag'));
+        $userLogin = Auth::user();
+        return view('question.detail', compact('question', 'answer', 'tag', 'userLogin'));
     }
 
     /**
@@ -118,4 +119,6 @@ class QuestionController extends Controller
         $deleted = Question::destroy($id);
         return redirect('/question');
     }
+
+
 }
