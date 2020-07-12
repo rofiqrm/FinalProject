@@ -20,10 +20,10 @@ class CreateVotesTable extends Migration
             $table->unsignedBigInteger('question_id')->nullable();
             $table->unsignedBigInteger('answer_id')->nullable();
             $table->timestamp('created_at')->useCurrent();
-        
+
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('answer_id')->references('id')->on('answers');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
         });
     }
 
